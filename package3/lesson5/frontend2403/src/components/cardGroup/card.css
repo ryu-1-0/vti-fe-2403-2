@@ -1,0 +1,20 @@
+.card-container{
+  width: 60%;
+  margin: 50px auto;
+  display: flex;
+  /* gap: 30px; */
+  column-gap: 30px;
+  
+}
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+h1,p{
+  margin: 0;
+}
+.card-container .card__img img{
+  width: 100%;
+  object-fit: cover;
+}

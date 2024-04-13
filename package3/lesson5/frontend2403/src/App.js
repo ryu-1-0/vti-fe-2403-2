@@ -5,6 +5,9 @@ import CardComponent1 from './components/CardComponent1'
 import CardComponent2 from './components/CardComponent2'
 import CardComponent3 from './components/CardComponent3'
 import CardComponentBtvn from './components/CardComponentBtvn'
+import CardGroup from './components/cardGroup/CardGroup'
+import Fragment from './components/Fragment'
+import Register from './components/Register'
 
 const App = () => {
   const element = React.createElement(
@@ -37,7 +40,7 @@ const App = () => {
   }
   return (
     <>
-      <div>
+      {/* <div>
         {element}
       </div>
       <div className='ques2'>
@@ -96,7 +99,10 @@ const App = () => {
         <CardComponent3 />
 
       </div>
-      <CardComponentBtvn />
+      <CardComponentBtvn /> */}
+      {/* <CardGroup /> */}
+      <Register />
+      <Fragment />
     </>
   )
 }
