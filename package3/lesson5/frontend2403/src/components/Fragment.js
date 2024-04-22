@@ -20,7 +20,7 @@ const Fragment = () => {
     setNamed('')
   }
   const [fullName, setName] = useState('')
-  const [age, setAge] = useState('')
+  const [age, setAge] = useState()
   const [gender, setGender] = useState('')
   const [selectedSkill, setSelectedSkill] = useState([])
   const [aboutYou, setAboutYou] = useState('')
@@ -79,7 +79,7 @@ const Fragment = () => {
           value={gender}
           disabled
         >
-          <option value="default">Select Render</option>
+          <option value="">Select Render</option>
           <option value="giatri1">Male</option>
           <option value="giatri2">Female</option>
           <option value="giatri3">Others</option>
@@ -127,7 +127,7 @@ const Fragment = () => {
           <h3>Age:</h3>
           <input
             className='input'
-            type='text'
+            type='number'
             value={age}
             placeholder='Enter age'
             onChange={handleOnChangeAge}
@@ -200,7 +200,8 @@ const Fragment = () => {
             value={aboutYou}
             placeholder='Enter about you'
             onChange={handleOnChangeAboutYou}
-          ></textarea>
+            readOnly
+          />
         </div>
         <div>
           <button className='form__btn' onClick={handleSubmit}>Submit</button>

@@ -1,0 +1,10 @@
+.search{
+  text-align: center;
+}
+.no-copy {
+  user-select: none;
+}
+.my-img{
+  width:100px;
+  height:100px;
+}

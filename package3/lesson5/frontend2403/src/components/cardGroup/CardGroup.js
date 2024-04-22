@@ -1,5 +1,6 @@
 import React from 'react'
 import './card.css'
+import CardItem from './CardItem'
 const CardGroup = () => {
   const cards = [
     {
@@ -23,21 +24,11 @@ const CardGroup = () => {
   ]
   return (
     <div className='card-container'>
+      <h3>CardGroup</h3>
       {
         cards.map((card, index) => {
           return (
-            <div className='card__' key={card.id}>
-              <div className='card__img'>
-                <img src={card.img} />
-
-              </div>
-              <div className='card__content'>
-                <h1 className='card__title'>{card.title}</h1>
-                <p className='card__desc'>
-                  {card.desc}
-                </p>
-              </div>
-            </div>
+            <CardItem cardItem={card} key={card.id} />
           )
         })
       }

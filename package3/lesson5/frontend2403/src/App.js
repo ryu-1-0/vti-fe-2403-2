@@ -8,6 +8,13 @@ import CardComponentBtvn from './components/CardComponentBtvn'
 import CardGroup from './components/cardGroup/CardGroup'
 import Fragment from './components/Fragment'
 import Register from './components/Register'
+import Search from './components/Search'
+import Question4 from './components/Question4'
+import Question2Coppy from './components/Question2Coppy'
+import CardList from './components/CardList'
+import Ques1 from './components/props/ques1/Ques1'
+import HomePage from './components/homePage/HomePage'
+import FormPage from './components/bt19.4/FormPage'
 
 const App = () => {
   const element = React.createElement(
@@ -40,6 +47,9 @@ const App = () => {
   }
   return (
     <>
+      {/* buoi 8 */}
+      <HomePage />
+      <FormPage />
       {/* <div>
         {element}
       </div>
@@ -100,9 +110,15 @@ const App = () => {
 
       </div>
       <CardComponentBtvn /> */}
+      {/* <Ques1 /> */}
       {/* <CardGroup /> */}
+      {/* <CardList />
+      <Question2Coppy />
+      <Question4 />
+      <Search />
       <Register />
-      <Fragment />
+      <Fragment /> */}
+
     </>
   )
 }

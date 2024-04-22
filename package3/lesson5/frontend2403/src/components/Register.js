@@ -203,6 +203,7 @@ function Register() {
             placeholder='Input your passsword'
             onChange={onChangePassword}
             value={password}
+            type='password'
           />
         </div>
         <div>
