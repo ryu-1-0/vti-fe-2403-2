@@ -81,8 +81,8 @@ const UsersPage = () => {
     <div id='form'>
       < div className="form-content" >
         <div className='user-detail'>
-          <h2>Creat new User</h2>
-          <div>
+          <h3>Creat new User</h3>
+          <div >
             <label>id: </label>
             <input type="text" value={user.id}
               onChange={(e) => {
@@ -150,9 +150,11 @@ const UsersPage = () => {
               })
             }} />
           </div>
+          <div>
+            <button className='btn-create' onClick={createUser}>Create</button>
+            <button className='btn-cancel' onClick={() => setOpenCreateUser(false)}>Cancel</button>
+          </div>
 
-          <button onClick={createUser}>Create</button>
-          <button onClick={() => setOpenCreateUser(false)}>Cancel</button>
         </div >
       </div >
     </div>
@@ -191,7 +193,7 @@ const UsersPage = () => {
   return (
     <div>UsersPage
       <div>
-        <button onClick={handleCreateUser}>Create new user</button>
+        <button className='btn-create' onClick={handleCreateUser}>Create new user</button>
         {openCreateUser && content}
         {openEditUser && <EditUser
           detailsUser={detailsUser}

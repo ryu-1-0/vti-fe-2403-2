@@ -4,11 +4,11 @@
   row-gap: 15px;
   background-color: #fefefe;
   margin: 10% auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #888;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 80%;
-  max-width: 500px; /* Added to limit maximum width of the modal */
+  max-width: 450px; /* Added to limit maximum width of the modal */
 }
 #form{
   /* display: none; */
@@ -21,3 +21,39 @@
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
+input{
+  display: block;
+    width: 400px;
+    height: 25px;
+    padding: 0 10px;
+}
+button{
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 0;
+}
+.user-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.btn-create{
+  background-color: var(--var-c-blue);
+  color: white;
+}
+.btn-cancel{
+  background-color: var(--var-c-red);
+  color: white;
+
+}
+/* .user-detail div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.user-detail label {
+  width: 80px;
+}
+.user-detail input {
+  flex: 1;
+} */

@@ -29,10 +29,10 @@ const TableComponent = (props) => {
               <td>{user?.department}</td>
               <td>{user?.position}</td>
               <td>
-                <button onClick={() => { props?.handleEditUser(user.id) }}>Edit</button>
+                <button className='btn-edit' onClick={() => { props?.handleEditUser(user.id) }}>Edit</button>
               </td>
               <td>
-                <button onClick={() => { props?.deleteUser(user.id) }}>Delete</button>
+                <button className='btn-edit' onClick={() => { props?.deleteUser(user.id) }}>Delete</button>
               </td>
             </tr>
           ))}

@@ -22,7 +22,7 @@ const EditUser = (props) => {
     <div id='form'>
       < div className="form-content" >
         <div className='user-detail'>
-          <h2>Creat new User</h2>
+          <h3>Edit User</h3>
           <div>
             <label>id: </label>
             <input type="text" value={user?.id}
@@ -67,13 +67,15 @@ const EditUser = (props) => {
               name='position'
             />
           </div>
+          <div>
+            <button className='btn-create' onClick={handleClick}>Edit</button>
+            <button className='btn-cancel' onClick={props.handleCancelEditUser}>Cancel</button>
+          </div>
 
-          <button onClick={handleClick}>Edit</button>
-          <button onClick={props.handleCancelEditUser}>Cancel</button>
         </div >
       </div >
     </div>
   )
 }
 
-export default EditUser
+export default EditUser   
