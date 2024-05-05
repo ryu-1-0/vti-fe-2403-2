@@ -1,0 +1,49 @@
+.top {
+  width: 50%;
+  margin: 25px auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.top h1,
+.bottom h1 {
+  padding: 10px 0;
+  text-align: center;
+
+
+}
+.border_top{
+  display: flex;
+}
+.top input {
+  width: 80%;
+  height: 30px;
+  margin: 10px 20px;
+}
+
+button {
+  padding: 5px 20px;
+  outline: none;
+  border: none;
+  background: red;
+  color: #fff;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.bottom {
+  width: 50%;
+  margin: 50px auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+textarea {
+  margin: 15px 30px;
+  width: 90%;
+  height: 150px;
+}
