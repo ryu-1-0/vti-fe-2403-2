@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react'
 import TableComponent from '../components/TableComponent/TableComponent'
 import './style.css';
 import EditUser from '../components/EditUser/EditUser';
+import CreateUser from '../components/CreateUser/CreateUser';
 
 const UsersPage = () => {
   const BASE_API_USER = 'http://localhost:3001/users'
   const [data, setData] = useState(null)
   const [openCreateUser, setOpenCreateUser] = useState(false)
   const [openEditUser, setOpenEditUser] = useState(false)
-  const [user, setUser] = useState({
-    id: '', email: '', userName: '', fullName: '', department: '', position: ''
-  })
+  const initUser = { email: '', userName: '', fullName: '', department: '', position: '' }
+  const [createUserData, setCreateUser] = useState(initUser)
+  const [detailsUser, setDetailsUser] = useState(null)
+
+  //============================================================================
+  // call api
   const getUsers = async () => {
     try {
       const response = await fetch('http://localhost:3001/users');
@@ -38,7 +42,9 @@ const UsersPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updatedUser),
+        // body: JSON.stringify({...updatedUser}),
       })
+      await getUsers()
       return res.ok
     } catch (error) {
       console.error('Error edit user:', error);
@@ -50,13 +56,15 @@ const UsersPage = () => {
       const response = await fetch(`http://localhost:3001/users/${userId}`, {
         method: 'DELETE',
       });
+      await getUsers()
+
       return response.ok;
     } catch (error) {
       console.error(`Error deleting user with ID ${userId}:`, error);
       return false
     }
   }
-  const createUser = async () => {
+  const createUser = async (user) => {
     // console.log('user', user)
     const newUser = user
     try {
@@ -67,6 +75,9 @@ const UsersPage = () => {
         },
         body: JSON.stringify(newUser),
       })
+      await getUsers()
+      // setUser(initUser);
+
       setOpenCreateUser(false)
       return res.ok
     } catch (error) {
@@ -76,96 +87,24 @@ const UsersPage = () => {
     }
 
   }
-  const content = (
-    // { id, email, userName, fullName, department, position }
-    <div id='form'>
-      < div className="form-content" >
-        <div className='user-detail'>
-          <h3>Creat new User</h3>
-          <div >
-            <label>id: </label>
-            <input type="text" value={user.id}
-              onChange={(e) => {
-                e.preventDefault()
 
-                setUser({
-                  ...user,
-                  id: e.target.value,
-                })
-              }}
-            />
 
-          </div>
-          <div>
-            <label>Email: </label>
-            <input type="text" value={user.email} onChange={(e) => {
-              e.preventDefault()
-              setUser({
-                ...user,
-                email: e.target.value,
-              })
-            }} />
-          </div>
-          <div>
-            <label>userName:</label>
-            <input type="text" value={user.userName} onChange={(e) => {
-              e.preventDefault()
-
-              setUser({
-                ...user,
-                userName: e.target.value,
-              })
-            }} />
-          </div>
-          <div>
-            <label>fullName: </label>
-            <input type="text" value={user.fullName} onChange={(e) => {
-              e.preventDefault()
-              setUser({
-                ...user,
-                fullName: e.target.value,
-              })
-            }
-            } />
-          </div>
-          <div>
-            <label>department: </label>
-            <input type="text" value={user.department} onChange={(e) => {
-              e.preventDefault()
-
-              setUser({
-                ...user,
-                department: e.target.value,
-              })
-            }} />
-          </div>
-          <div>
-            <label>position: </label>
-            <input type="text" value={user.position} onChange={(e) => {
-              e.preventDefault()
-
-              setUser({
-                ...user,
-                position: e.target.value,
-              })
-            }} />
-          </div>
-          <div>
-            <button className='btn-create' onClick={createUser}>Create</button>
-            <button className='btn-cancel' onClick={() => setOpenCreateUser(false)}>Cancel</button>
-          </div>
-
-        </div >
-      </div >
-    </div>
-
-  )
-
-  const handleCreateUser = () => {
+  //============================================================================
+  // createUser
+  const openModalCreateUser = async (userID) => {
     setOpenCreateUser(true)
+  }
+  const handleCreateUser = async (user) => {
+    await createUser(user)
+    setOpenCreateUser(false)
 
   }
-  const [detailsUser, setDetailsUser] = useState(null)
+  const handleCancelCreateUser = () => {
+    setOpenCreateUser(false)
+
+  }
+  //============================================================================
+  // edit user
   const openModalEditUser = async (userID) => {
     setOpenEditUser(true)
     const detailsUser = await getUserById(userID)
@@ -175,26 +114,29 @@ const UsersPage = () => {
   const handleEditUser = async (editedUser) => {
     console.log('editedUser', editedUser)
     const isEdited = await editUser(editedUser)
-    // if (isEdited) {
-    //   location.reload()
-    // } else {
-    //   alert("Edit Failed")
-    // }
+    setOpenEditUser(false)
+
   }
   const handleCancelEditUser = () => {
     setOpenEditUser(false)
 
   }
+
+
   useEffect(() => {
     getUsers()
 
-  }, [])
+  }, [data])
 
   return (
-    <div>UsersPage
+    <div style={{ margin: '5px' }}>
       <div>
-        <button className='btn-create' onClick={handleCreateUser}>Create new user</button>
-        {openCreateUser && content}
+        <button className='btn-create' onClick={openModalCreateUser}>Create new user</button>
+        {openCreateUser && <CreateUser
+          // createUser={createUserData}
+          handleCreateUser={handleCreateUser}
+          handleCancelCreateUser={handleCancelCreateUser}
+        />}
         {openEditUser && <EditUser
           detailsUser={detailsUser}
           handleEditUser={handleEditUser}

@@ -1,20 +1,36 @@
 {
   "users": [
     {
-      "id": "1",
-      "email": "dbao.le332@gmail.com",
-      "userName": "dbao5",
-      "fullName": "Bảo Duy Lê",
-      "department": "Marketing6",
-      "position": "Sale6"
-    },
-    {
       "id": "2",
       "email": "2051120207@ut.edu.vn",
-      "userName": "ryuu",
+      "userName": "Duy Bảo",
       "fullName": "duybao",
       "department": "it",
       "position": "it"
+    },
+    {
+      "id": "b947",
+      "email": "2051120207@ut.edu.vn",
+      "fullName": "duybao",
+      "userName": "dbao5",
+      "department": "marketing",
+      "position": "sales"
+    },
+    {
+      "id": "3df5",
+      "email": "dbao.le332@gmail.com",
+      "fullName": "Duy Bảo",
+      "userName": "d",
+      "department": "sales",
+      "position": "sales"
+    },
+    {
+      "id": "b768",
+      "department": "sales",
+      "position": "Sales Associate",
+      "email": "dbao.le332@gmail.com",
+      "fullName": "Bảo Duy Lê",
+      "userName": "dbao5"
     }
   ]
 }

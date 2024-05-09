@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-const EditUser = (props) => {
-  // console.log('props?.detailsUser', props?.detailsUser)
+const CreateUser = (props) => {
+  // console.log('props?.createUser', props?.createUser)
   const [user, setUser] = useState(null)
-
+  const [inputErrors, setInputErrors] = useState(
+    { email: false, userName: false, fullName: false }
+  )
   useEffect(() => {
-    setUser(props?.detailsUser)
+    setUser(props?.createUser)
 
-  }, [props?.detailsUser])
+  }, [props?.createUser])
   // console.log('firstName', user)
   const handleUserChange = (e) => {
     setUser((prevUser) => ({
@@ -27,28 +29,45 @@ const EditUser = (props) => {
     return positionOptionsByDepartment[user?.department] || []
   }
   const handleClick = () => {
-    props.handleEditUser(user)
+    const errors = {}
+    let hasError = false
+
+    // Kiểm tra xem các input có được điền đầy đủ hay không
+    if (!user?.email) {
+      errors.email = true
+      hasError = true
+    }
+    if (!user?.userName) {
+      errors.userName = true
+      hasError = true
+    }
+    if (!user?.fullName) {
+      errors.fullName = true
+      hasError = true
+    }
+
+    // Nếu có lỗi, cập nhật trạng thái inputErrors để hiển thị thông báo lỗi
+    if (hasError) {
+      setInputErrors(errors)
+    } else {
+      // Nếu không có lỗi, gọi hàm handleCreateUser từ props
+      props.handleCreateUser(user)
+    }
   }
   return (
     <div id='form'>
       < div className="form-content" >
         <div className='user-detail'>
-          <h3>Edit User</h3>
-          {/* <div>
-            <label>id: </label>
-            <input type="text" value={user?.id}
-              name='id'
-              onChange={handleUserChange}
-              disabled
-            />
+          <h3>Create new User</h3>
 
-          </div> */}
           <div>
             <label>Email*: </label>
             <input type="text" value={user?.email}
               onChange={handleUserChange}
               name='email'
             />
+            {inputErrors.email &&
+              <span className="error-message">Please enter an email</span>}
           </div>
           <div>
             <label>UserName*:</label>
@@ -56,6 +75,8 @@ const EditUser = (props) => {
               onChange={handleUserChange}
               name='userName'
             />
+            {inputErrors.email &&
+              <span className="error-message">Please enter an email</span>}
           </div>
           <div>
             <label>FullName*: </label>
@@ -63,10 +84,13 @@ const EditUser = (props) => {
               onChange={handleUserChange}
               name='fullName'
             />
+            {inputErrors.email &&
+              <span className="error-message">Please enter an email</span>}
           </div>
-
           <div>
             <label>Department: </label>
+
+
             <select
               name='department'
               onChange={handleUserChange}
@@ -94,8 +118,8 @@ const EditUser = (props) => {
             </select>
           </div>
           <div className='btn-group'>
-            <button className='btn-create' onClick={handleClick}>Edit</button>
-            <button className='btn-cancel' onClick={props.handleCancelEditUser}>Cancel</button>
+            <button className='btn-create' onClick={handleClick}>Create</button>
+            <button className='btn-cancel' onClick={props.handleCancelCreateUser}>Cancel</button>
           </div>
 
         </div >
@@ -104,4 +128,4 @@ const EditUser = (props) => {
   )
 }
 
-export default EditUser   
+export default CreateUser   
